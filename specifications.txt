@@ -1,0 +1,48 @@
+Calvin Le a1766744 – OOP Semester 2, 2020 – The University of Adelaide
+Project Specification - Major Practical
+Introduction
+My project involves a command-line RPG with the goal of how far the player can survive. The player will control a single character in a randomly generated 2D map, using the command-line to move around, attack enemies and chests, and recover health with potions. Enemies will slowly approach the player, usually bunching up and attacking the player within melee range. Difficulty ramps up over time, with the player gathering experience and buffs to survive longer.
+Design Description
+Memory allocation from stack and the heap
+-	Vectors: I will create an Enemy Manager that carries a dynamic, constantly resizing according to enemy spawn and kills.
+-	Strings: The player can input a name to use for their character. Enemies can spawn with a randomly selected monster name.
+-	Objects: Vital part of the system, with the player object, the generated enemies, and the pickups that spawn on the map. Implement a game object that holds the entire game together.
+User Input and Output
+-	String I/O: Players input directions to move and other commands to do their respective actions.
+-	Decimal I/O: Players can choose the size of their map.
+-	Character I/O: A map of the character’s sight is output on every turn, showing the player at the middle, and objects surrounding it.
+Object-oriented programming and design
+-	Inheritance: Entity class that serves as a base for the player, enemy, and chest class. Entities contain their coordinates, stats, and name. Players have their levels and upgrades, enemies have their simple AI, and chests contain a randomly generated upgrade for the player.
+-	Polymorphism: Enemies initially spawn with a constructor with some/no parameters. As the game progresses, enemies use the constructor with the difficulty modifier instead to provide a challenge for the player through increased stats. For testing purposes, various constructors may be made to provide objects with fixed stats.
+-	Abstract Classes: A void move function. Player requires a string to do one move. Enemies require coordinates to move towards. Chests do not move.
+Testing
+-	Test Inputs / Expected Outputs: A fixed test map is created, testing the mechanics of the game.
+-	Automated Testing: Using a Makefile and a text of inputs, it will load the test map and quickly show the outcome of the fixed situation.
+-	Regression Testing: After each update, they will be manually checked with the test map.
+Class Diagram
+
+Class Descriptions
+Entity
+Abstract base class. Contains a name, coordinates, and stats. A virtual void move function exists in the entity, about to be implemented by subclasses.
+Player
+Entity that the player controls for the duration of the gameplay. Move function takes a string as an input, moving in a cardinal direction, performing an attack, drinking a potion, or waiting. The player can level up and acquire stat upgrades.
+The user interface connects the user with the player, allowing them control within the game through the command line. The commands used to interact with the game at different states should be given through the manual that is within the same folder as the game.
+Enemy
+Entities that oppose the player. They have a simple AI that makes them move them one space closer to the player or attack them when they are at least one unit close. The game modifier upgrades their stats so that they can pose a challenge to the player for the duration of the game.
+Chests
+Immobile entities that provide a guaranteed boost to the player. The player can walk over them to pick them up.
+
+Code Style
+-	I will put the entity classes in a folder to separate them from the other files.
+-	Camel casing on function names. Capitalised class names.
+-	Comments will be placed at the top of sections of code where their functions are not as explicit as it initially looks.
+-	Proper indentation; one tab for code for each level of curly bracketing.
+-	Variable names should be explicit for their purpose, e.g. positions on x and y
+Testing Plan
+A set of fixed maps are required to be implemented for each mechanic introduced. The Makefile will be used to compile each test case, speeding through the tests using text file inputs in order to pinpoint errors faster and reallocate testing time to development time.
+These tests will be put in a separate folder to ensure they do not get mixed with the main program.
+As the game expands, so does the Makefile and the test count. These test maps should be labelled to show what they are testing.
+
+Schedule Plan
+Stretch Goals
+Our goal is to complete this project by week 9.
